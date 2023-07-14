@@ -1,81 +1,24 @@
-import { Button } from './buttons'
 import { InputField } from './inputField'
+import { Keypad } from './keypad'
+import { useState } from 'react'
 
 export function Calculator() {
+	const [input, setInput] = useState('')
+
+	const onButtonClick = (value) => {
+		setInput(input + value)
+		console.log(value)
+	}
+
+	const onClear = () => {
+		setInput('')
+		console.log('cleared')
+	}
+
 	return (
 		<div>
-			<InputField />
-			<table>
-				<tbody>
-					<tr>
-						<td>
-							<Button value={'AC'} />
-						</td>
-						<td>
-							<Button value={'CE'} />
-						</td>
-						<td>
-							<Button />
-						</td>
-						<td>
-							<Button value={'/'} />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<Button value={'7'} />
-						</td>
-						<td>
-							<Button value={'8'} />
-						</td>
-						<td>
-							<Button value={'9'} />
-						</td>
-						<td>
-							<Button value={'x'} />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<Button value={'4'} />
-						</td>
-						<td>
-							<Button value={'5'} />
-						</td>
-						<td>
-							<Button value={'6'} />
-						</td>
-						<td>
-							<Button value={'-'} />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<Button value={'1'} />
-						</td>
-						<td>
-							<Button value={'2'} />
-						</td>
-						<td>
-							<Button value={'3'} />
-						</td>
-						<td>
-							<Button value={'+'} />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<Button value={'0'} />
-						</td>
-						<td>
-							<Button value={'.'} />
-						</td>
-						<td colSpan={2}>
-							<Button value={'='} />
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<InputField value={input} />
+			<Keypad onButtonClick={onButtonClick} onClear={onClear} />
 		</div>
 	)
 }
